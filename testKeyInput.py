@@ -8,7 +8,7 @@ cv2.imshow('WinName', img)
 k = cv2.waitKey(0)
 print("Value of k: ", k)
 
-if k == ord('s'):
+if k == ord(''):
     cv2.imwrite('newLena.png', img)
     print("Entered This Loop")
     cv2.destroyAllWindows()
