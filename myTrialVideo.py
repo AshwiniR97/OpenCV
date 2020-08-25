@@ -1,4 +1,7 @@
 import cv2
+import numpy as np
+
+
 
 # Using 0 argument as default to capture from camera
 # If multiple cameras, test with 1, 2, -1
@@ -11,20 +14,14 @@ fourCC = cv2.VideoWriter_fourcc(*'XVID')
 # Opening VideoWriter Class to write - Arguments are filename, fourCC code, frames per second, (height, width))
 out = cv2.VideoWriter('outputVideo.avi', fourCC, 20.0, (640, 480))
 
-# cap.isOpened() ensures the index of camera is right
-while cap.isOpened():
+while True:
     ret, frame = cap.read()
 
     if ret:
-        # Printing Width and Height
-        height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
-        width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
-        print("\nFrame width is %f and height is %f", height, width)
+        frame[0:180, :, :] = frame[300:600, :, :]
         # To write frame to output file
         out.write(frame)
-        # If you want to change the frame colouring
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        cv2.imshow('Video', gray)
+        cv2.imshow('Video', frame)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break

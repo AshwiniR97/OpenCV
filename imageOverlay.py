@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
 
-chessboard = cv2.imread('chessboard.png')
-lena = cv2.imread('lena.jpg')
+chessboard = cv2.imread('2.jpg')
+lena = cv2.imread('SnipOfPuzzle.png')
 
 chessboard = cv2.resize(chessboard, (512, 512))
 lena = cv2.resize(lena, (512, 512))
