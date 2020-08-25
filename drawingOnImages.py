@@ -1,8 +1,8 @@
 import numpy as np
 import cv2
 
-img = cv2.imread('lena.jpg')
-
+# img = cv2.imread('lena.jpg')
+img = np.zeros([512, 512, 3], np.uint8)
 # Overwrite Image
 img = cv2.line(img, (0, 0), (255, 255), (255, 0, 0), 4)
 img = cv2.circle(img, (255, 255), 50, (0, 255, 0), 4)
