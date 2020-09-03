@@ -23,7 +23,14 @@ while cap.isOpened():
     dilated = cv2.dilate(thresh, None, iterations=3)
     contours, _ = cv2.findContours(dilated, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
-    cv2.drawContours(frame1, contours, -1, (0, 255, 0), 2)
+    for contour in contours:
+        (x, y, w, h) = cv2.boundingRect(contour)
+        # Finding contour area - if its too small we ignore the contour
+        if cv2.contourArea(contour) < 900:
+            continue
+        cv2.rectangle(frame1, (x, y), (x + w, y + h), (0, 0, 255), 2)
+        cv2.putText(frame1, "Status: {}".format('Movement'), (10, 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 3)
+    # cv2.drawContours(frame1, contours, -1, (0, 255, 0), 2)
 
     cv2.imshow("Feed", frame1)
     frame1 = frame2
